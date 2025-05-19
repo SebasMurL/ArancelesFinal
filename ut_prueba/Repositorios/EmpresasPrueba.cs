@@ -72,7 +72,7 @@ namespace ut_presentacion.Repositorios
             for (int i = 0; i < 6; i++) //
             {
                 this.entidad = ListaNucleo.Lista_Empresas[i]; //
-                this.iConexion!.Empresas!.Remove(this.entidad!);
+                this.iConexion!.Empresas!.Remove(entidad!); //Aqui elimine el this entidad
                 this.iConexion!.SaveChanges();
                 //Sera que lo saco afuera?
             }

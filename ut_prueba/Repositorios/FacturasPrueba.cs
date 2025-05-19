@@ -28,13 +28,13 @@ namespace ut_presentacion.Repositorios
         }
 
         [TestMethod]
-        public void Ejecutar()
+        public void Ejecutar() // 
         {
             Assert.AreEqual(true, Cargar());
             Assert.AreEqual(true, Guardar());
             Assert.AreEqual(true, Modificar());
             Assert.AreEqual(true, Listar());
-            Assert.AreEqual(true, Borrar());
+            Assert.AreEqual(true, Borrar()); //El orden de los borrar importan absudamente
         }
         public bool Cargar()
         {
@@ -87,18 +87,11 @@ namespace ut_presentacion.Repositorios
             for (int i = 0; i < 6; i++) //
             {
                 this.entidad8 = ListaNucleo.Lista_Aranceles[i]; //
-                this.iConexion!.Aranceles!.Remove(this.entidad8!);
+                this.iConexion!.Aranceles!.Remove(entidad8!);
                 this.iConexion!.SaveChanges();
                 //Sera que lo saco afuera?
             }
-
-            for (int i = 0; i < 6; i++) //
-            {
-                this.entidad1 = ListaNucleo.Lista_Empresas[i]; //
-                this.iConexion!.Empresas!.Remove(this.entidad1!);
-                this.iConexion!.SaveChanges();
-                //Sera que lo saco afuera?
-            }
+          
             for (int i = 0; i < 6; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
             {
                 entidad3 = ListaNucleo.Lista_Ordenes[i]; //
@@ -106,13 +99,7 @@ namespace ut_presentacion.Repositorios
                 iConexion!.SaveChanges();
                 //Sera que lo saco afuera?
             }
-            for (int i = 0; i < 4; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
-            {
-                entidad4 = ListaNucleo.Lista_Paises[i]; //
-                iConexion!.Paises!.Remove(entidad4!);
-                iConexion!.SaveChanges();
-                //Sera que lo saco afuera?
-            }
+            
             for (int i = 0; i < 6; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
             {
                 entidad5 = ListaNucleo.Lista_Productos[i]; //
@@ -131,6 +118,20 @@ namespace ut_presentacion.Repositorios
             {
                 entidad7 = ListaNucleo.Lista_TiposDeProductos[i]; //
                 iConexion!.TiposDeProductos!.Remove(entidad7!);
+                iConexion!.SaveChanges();
+                //Sera que lo saco afuera?
+            }
+            for (int i = 0; i < 6; i++) //
+            {
+                this.entidad1 = ListaNucleo.Lista_Empresas[i]; //
+                this.iConexion!.Empresas!.Remove(entidad1!);
+                this.iConexion!.SaveChanges();
+                //Sera que lo saco afuera?
+            }
+            for (int i = 0; i < 4; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
+            {
+                entidad4 = ListaNucleo.Lista_Paises[i]; //
+                iConexion!.Paises!.Remove(entidad4!);
                 iConexion!.SaveChanges();
                 //Sera que lo saco afuera?
             }

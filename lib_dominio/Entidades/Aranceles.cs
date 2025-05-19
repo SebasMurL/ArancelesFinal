@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace lib_dominio.Entidades
     public class Aranceles
     {
         //4 Atributos
-        public int? Id { get; set; }
+        [Key] public int? Id { get; set; }
         public int? Id_Orden { get; set; }
         public int? Id_TipoDeArancel { get; set; }
         public decimal? PorcentajeDelArancel { get; set; }

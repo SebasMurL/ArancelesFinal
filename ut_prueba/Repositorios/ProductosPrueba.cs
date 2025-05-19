@@ -75,24 +75,7 @@ namespace ut_presentacion.Repositorios
         {
 
 
-            for (int i = 0; i < 6; i++) //
-            {
-                this.entidad1 = ListaNucleo.Lista_Empresas[i]; //
-                this.iConexion!.Empresas!.Remove(this.entidad1!);
-                this.iConexion!.SaveChanges();
-                //Sera que lo saco afuera?
-            }
-            for (int i = 0; i < 4; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
-            {
-                if(i==2)
-                {
-                    i = 3;
-                }
-                entidad4 = ListaNucleo.Lista_Paises[i]; //
-                iConexion!.Paises!.Remove(entidad4!);
-                iConexion!.SaveChanges();
-                //Sera que lo saco afuera?
-            }
+
             for (int i = 0; i < 6; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
             {
                 entidad = ListaNucleo.Lista_Productos[i]; //
@@ -104,6 +87,24 @@ namespace ut_presentacion.Repositorios
             {
                 entidad7 = ListaNucleo.Lista_TiposDeProductos[i]; //
                 iConexion!.TiposDeProductos!.Remove(entidad7!);
+                iConexion!.SaveChanges();
+                //Sera que lo saco afuera?
+            }
+            for (int i = 0; i < 6; i++) //
+            {
+                this.entidad1 = ListaNucleo.Lista_Empresas[i]; //
+                this.iConexion!.Empresas!.Remove(this.entidad1!);
+                this.iConexion!.SaveChanges();
+                //Sera que lo saco afuera?
+            }
+            for (int i = 0; i < 4; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
+            {
+                if (i == 2)
+                {
+                    i = 3;
+                }
+                entidad4 = ListaNucleo.Lista_Paises[i]; //
+                iConexion!.Paises!.Remove(entidad4!);
                 iConexion!.SaveChanges();
                 //Sera que lo saco afuera?
             }
