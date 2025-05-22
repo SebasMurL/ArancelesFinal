@@ -27,8 +27,14 @@ namespace lib_aplicaciones.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
-            this.IConexion!.Aranceles!.Remove(entidad);
-            this.IConexion.SaveChanges();
+            Aranceles[] Prueba = this.IConexion!.Aranceles!.ToArray<Aranceles>();
+            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
+            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
+            {
+                this.IConexion!.Aranceles!.Remove(entidad);
+                this.IConexion.SaveChanges();
+                return entidad;
+            }
             return entidad;
         }
         //------------------------------------------------
@@ -38,8 +44,14 @@ namespace lib_aplicaciones.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
-            this.IConexion!.Paises!.Remove(entidad);
-            this.IConexion.SaveChanges();
+            Paises[] Prueba = this.IConexion!.Paises!.ToArray<Paises>();
+            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
+            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
+            {
+                this.IConexion!.Paises!.Remove(entidad);
+                this.IConexion.SaveChanges();
+                return entidad;
+            }
             return entidad;
         }
         public Ordenes? Borrar(Ordenes? entidad)
@@ -48,8 +60,14 @@ namespace lib_aplicaciones.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
-            this.IConexion!.Ordenes!.Remove(entidad);
-            this.IConexion.SaveChanges();
+            Ordenes[] Prueba = this.IConexion!.Ordenes!.ToArray<Ordenes>();
+            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
+            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
+            {
+                this.IConexion!.Ordenes!.Remove(entidad);
+                this.IConexion.SaveChanges();
+                return entidad;
+            }
             return entidad;
         }
         public Empresas? Borrar(Empresas? entidad)
@@ -58,8 +76,14 @@ namespace lib_aplicaciones.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
-            this.IConexion!.Empresas!.Remove(entidad);
-            this.IConexion.SaveChanges();
+            Empresas[] Prueba = this.IConexion!.Empresas!.ToArray<Empresas>();
+            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
+            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
+            {
+                this.IConexion!.Empresas!.Remove(entidad);
+                this.IConexion.SaveChanges();
+                return entidad;
+            }
             return entidad;
         }
         public Productos? Borrar(Productos? entidad)
@@ -68,8 +92,14 @@ namespace lib_aplicaciones.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
-            this.IConexion!.Productos!.Remove(entidad);
-            this.IConexion.SaveChanges();
+            Productos[] Prueba = this.IConexion!.Productos!.ToArray<Productos>();
+            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
+            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
+            {
+                this.IConexion!.Productos!.Remove(entidad);
+                this.IConexion.SaveChanges();
+                return entidad;
+            }
             return entidad;
         }
         public TiposDeProductos? Borrar(TiposDeProductos? entidad)
@@ -78,8 +108,14 @@ namespace lib_aplicaciones.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
-            this.IConexion!.TiposDeProductos!.Remove(entidad);
-            this.IConexion.SaveChanges();
+            TiposDeProductos[] Prueba = this.IConexion!.TiposDeProductos!.ToArray<TiposDeProductos>();
+            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
+            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
+            {
+                this.IConexion!.TiposDeProductos!.Remove(entidad);
+                this.IConexion.SaveChanges();
+                return entidad;
+            }
             return entidad;
         }
         public TiposDeAranceles? Borrar(TiposDeAranceles? entidad)
@@ -88,8 +124,14 @@ namespace lib_aplicaciones.Implementaciones
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
-            this.IConexion!.TiposDeAranceles!.Remove(entidad);
-            this.IConexion.SaveChanges();
+            TiposDeAranceles[] Prueba = this.IConexion!.TiposDeAranceles!.ToArray<TiposDeAranceles>();
+            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
+            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
+            {
+                this.IConexion!.TiposDeAranceles!.Remove(entidad);
+                this.IConexion.SaveChanges();
+                return entidad;
+            }
             return entidad;
         }
         //---------------------------------------------------------

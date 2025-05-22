@@ -7,21 +7,15 @@ using System.Threading.Tasks;
 
 namespace lib_aplicaciones.Interfaces
 {
-    public interface IArancelesAplicacion
+    public interface ITiposDeProductosAplicacion
     {
         void Configurar(string StringConexion);
-        List<Aranceles> PorPorcentajeDelArancel(Aranceles? entidad);
-        List<Aranceles> Listar();
-        Aranceles? Guardar(Aranceles? entidad);
-        Aranceles? Modificar(Aranceles? entidad);
-        Aranceles? Borrar(Aranceles? entidad);
+        List<TiposDeProductos> PorNombre(TiposDeProductos? entidad);
+        List<TiposDeProductos> Listar();
+        TiposDeProductos? Guardar(TiposDeProductos? entidad);
+        TiposDeProductos? Modificar(TiposDeProductos? entidad);
+        TiposDeProductos? Borrar(TiposDeProductos? entidad);
         //---------------------------------------//
-        Paises? Borrar(Paises? entidad);//
-        Ordenes? Borrar(Ordenes? entidad);//
-        Empresas? Borrar(Empresas? entidad);//
-        Productos? Borrar(Productos? entidad);//
-        TiposDeProductos? Borrar(TiposDeProductos? entidad);//
-        TiposDeAranceles? Borrar(TiposDeAranceles? entidad);
 
     }
 }

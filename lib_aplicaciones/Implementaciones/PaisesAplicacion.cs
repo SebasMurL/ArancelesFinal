@@ -2,7 +2,6 @@
 using lib_dominio.Entidades;
 using lib_repositorios.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace lib_aplicaciones.Implementaciones
 {
-    public class EmpresasAplicacion : IEmpresasAplicacion
+    public class PaisesAplicacion : IPaisesAplicacion
     {
         private IConexion? IConexion = null;
-        public EmpresasAplicacion(IConexion iConexion)
+        public PaisesAplicacion(IConexion iConexion)
         {
             this.IConexion = iConexion;
         }
@@ -22,30 +21,12 @@ namespace lib_aplicaciones.Implementaciones
         {
             this.IConexion!.StringConexion = StringConexion;
         }
-        public Empresas? Borrar(Empresas? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad!.Id == 0)
-                throw new Exception("lbNoSeGuardo");
-            Empresas[] Prueba = this.IConexion!.Empresas!.ToArray<Empresas>();
-            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
-            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
-            {
-                this.IConexion!.Empresas!.Remove(entidad);
-                this.IConexion.SaveChanges();
-                return entidad;
-            }
-            return entidad;
-        }
-        //------------------------------------------------
         public Paises? Borrar(Paises? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
-
             Paises[] Prueba = this.IConexion!.Paises!.ToArray<Paises>();
             List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
             if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
@@ -56,43 +37,45 @@ namespace lib_aplicaciones.Implementaciones
             }
             return entidad;
         }
+        //------------------------------------------------
+       
         //---------------------------------------------------------
-        public Empresas? Guardar(Empresas? entidad)
+        public Paises? Guardar(Paises? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
             // if (entidad.Id != 0)
-                // throw new Exception("lbYaSeGuardo"); Esto no es necesario ya que guardo varios datos
+            // throw new Exception("lbYaSeGuardo"); Esto no es necesario ya que guardo varios datos
             //Operacion -----------------------------------------------------------------------------------
             //----------------------------------------------------------------------------------------------
-            this.IConexion!.Empresas!.Add(entidad);
+            this.IConexion!.Paises!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<Empresas> Listar()
+        public List<Paises> Listar()
         {
-            return this.IConexion!.Empresas!.Take(20).ToList();
+            return this.IConexion!.Paises!.Take(20).ToList();
         }
         //Organizar ------------------------------------------------------------------------------------------
-        public List<Empresas> PorNombre(Empresas? entidad)
+        public List<Paises> PorNombre(Paises? entidad)
         {
-            return this.IConexion!.Empresas!
-                .Where(x => x.Nombre!.Contains(entidad!.Nombre!))
-                .ToList();
+            return this.IConexion!.Paises!
+                    .Where(x => x.Nombre.ToString()!.Contains(entidad!.Nombre.ToString()!))
+                    .ToList();
         }
         //Modificar ----------------------------------------------------------------------------------------------
-        public Empresas? Modificar(Empresas? entidad)
+        public Paises? Modificar(Paises? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
             //Modificacion-----------------------------------------------------------------------
-            if (entidad.Nombre!= null)
+            if (entidad.Nombre != null)
             {
-                entidad!.Nombre ="Modificacion";
+                entidad!.Nombre = "Modificacion";
             }
-            var entry = this.IConexion!.Entry<Empresas>(entidad);
+            var entry = this.IConexion!.Entry<Paises>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion.SaveChanges();
             return entidad;

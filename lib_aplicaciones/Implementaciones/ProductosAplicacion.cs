@@ -7,69 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ut_presentaciones.Nucleo;
 
 namespace lib_aplicaciones.Implementaciones
 {
-    public class FacturasAplicacion : IFacturasAplicacion
+    public class ProductosAplicacion : IProductosAplicacion
     {
         private IConexion? IConexion = null;
-        public FacturasAplicacion(IConexion iConexion)
+        public ProductosAplicacion(IConexion iConexion)
         {
             this.IConexion = iConexion;
         }
         public void Configurar(string StringConexion)
         {
             this.IConexion!.StringConexion = StringConexion;
-        }
-        public Facturas? Borrar(Facturas? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad!.Id == 0)
-                throw new Exception("lbNoSeGuardo");
-            Facturas[] Prueba = this.IConexion!.Facturas!.ToArray<Facturas>();
-            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
-            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
-            {
-                this.IConexion!.Facturas!.Remove(entidad);
-                this.IConexion.SaveChanges();
-                return entidad;
-            }
-            return entidad;
-        }
-        //------------------------------------------------
-        public Aranceles? Borrar(Aranceles? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad!.Id == 0)
-                throw new Exception("lbNoSeGuardo");
-            Aranceles[] Prueba = this.IConexion!.Aranceles!.ToArray<Aranceles>();
-            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
-            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
-            {
-                this.IConexion!.Aranceles!.Remove(entidad);
-                this.IConexion.SaveChanges();
-                return entidad;
-            }
-            return entidad;
-        }
-        public Ordenes? Borrar(Ordenes? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad!.Id == 0)
-                throw new Exception("lbNoSeGuardo");
-            Ordenes[] Prueba = this.IConexion!.Ordenes!.ToArray<Ordenes>();
-            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
-            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
-            {
-                this.IConexion!.Ordenes!.Remove(entidad);
-                this.IConexion.SaveChanges();
-                return entidad;
-            }
-            return entidad; ;
         }
         public Productos? Borrar(Productos? entidad)
         {
@@ -87,6 +37,7 @@ namespace lib_aplicaciones.Implementaciones
             }
             return entidad;
         }
+        //------------------------------------------------
         public Empresas? Borrar(Empresas? entidad)
         {
             if (entidad == null)
@@ -119,22 +70,6 @@ namespace lib_aplicaciones.Implementaciones
             }
             return entidad;
         }
-        public TiposDeAranceles? Borrar(TiposDeAranceles? entidad)
-        {
-            if (entidad == null)
-                throw new Exception("lbFaltaInformacion");
-            if (entidad!.Id == 0)
-                throw new Exception("lbNoSeGuardo");
-            TiposDeAranceles[] Prueba = this.IConexion!.TiposDeAranceles!.ToArray<TiposDeAranceles>();
-            List<String> IDs = Prueba.Select(Prueba => Prueba?.Id?.ToString() ?? "null").ToList(); //no se guarda el nombre interno antes, sino que se guarda el link
-            if (IDs.Contains(entidad.Id.ToString())) //DIOS QUE DOLOR no me funciona el contains si lo uso directamente
-            {
-                this.IConexion!.TiposDeAranceles!.Remove(entidad);
-                this.IConexion.SaveChanges();
-                return entidad;
-            }
-            return entidad;
-        }
         public Paises? Borrar(Paises? entidad)
         {
             if (entidad == null)
@@ -152,46 +87,42 @@ namespace lib_aplicaciones.Implementaciones
             return entidad;
         }
         //---------------------------------------------------------
-        public Facturas? Guardar(Facturas? entidad)
+        public Productos? Guardar(Productos? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
             // if (entidad.Id != 0)
             // throw new Exception("lbYaSeGuardo"); Esto no es necesario ya que guardo varios datos
             //Operacion -----------------------------------------------------------------------------------
-            if (entidad.PagoTotalCop!=null)
-            {
-                entidad!.PagoTotalCop=OperacionesNucleo.CalcularPagoTotal(entidad._Arancel);
-            }
             //----------------------------------------------------------------------------------------------
-            this.IConexion!.Facturas!.Add(entidad);
+            this.IConexion!.Productos!.Add(entidad);
             this.IConexion.SaveChanges();
             return entidad;
         }
-        public List<Facturas> Listar()
+        public List<Productos> Listar()
         {
-            return this.IConexion!.Facturas!.Take(20).ToList();
+            return this.IConexion!.Productos!.Take(20).ToList();
         }
         //Organizar ------------------------------------------------------------------------------------------
-        public List<Facturas> PorFecha(Facturas? entidad)
+        public List<Productos> PorNombre(Productos? entidad)
         {
-            return this.IConexion!.Facturas!
-                    .Where(x => x.Fecha.ToString()!.Contains(entidad!.Fecha.ToString()!))
+            return this.IConexion!.Productos!
+                    .Where(x => x.Nombre!.Contains(entidad!.Nombre!))
                     .ToList();
         }
         //Modificar ----------------------------------------------------------------------------------------------
-        public Facturas? Modificar(Facturas? entidad)
+        public Productos? Modificar(Productos? entidad)
         {
             if (entidad == null)
                 throw new Exception("lbFaltaInformacion");
             if (entidad!.Id == 0)
                 throw new Exception("lbNoSeGuardo");
             //Modificacion-----------------------------------------------------------------------
-            if (entidad.PagoTotalCop!= null)
+            if (entidad.Nombre!= null)
             {
-                entidad!.PagoTotalCop =00000000;
+                entidad!.Nombre ="Prueba";
             }
-            var entry = this.IConexion!.Entry<Facturas>(entidad);
+            var entry = this.IConexion!.Entry<Productos>(entidad);
             entry.State = EntityState.Modified;
             this.IConexion.SaveChanges();
             return entidad;

@@ -57,11 +57,15 @@ namespace ut_presentaciones.Aplicaciones
         }
         public bool Guardar() //Modificada
         {
-            for (int i = 0; i < 6; i++) // RECUERDA HACERLO DO WHILE
+            int i = 0;
+            while (ListaNucleo.Lista_Aranceles.Count > i) // RECUERDA HACERLO WHILE
             {
-                this.entidad = ListaNucleo.Lista_Aranceles[i];
-                this.iAplicacion!.Guardar(this.entidad); //¿?
-
+                if (ListaNucleo.Lista_Aranceles[i] != null)
+                {
+                    this.entidad = ListaNucleo.Lista_Aranceles[i];
+                    this.iAplicacion!.Guardar(this.entidad); //¿?
+                }
+                i = i + 1;
                 //Sera que lo saco afuera?
             }
             return true;
@@ -76,49 +80,61 @@ namespace ut_presentaciones.Aplicaciones
 
         public bool Borrar()
         {
-            for (int i = 0; i < 6; i++) //
+            int i = 0;
+            while (ListaNucleo.Lista_Aranceles.Count > i) //
             {
                 this.entidad = ListaNucleo.Lista_Aranceles[i]; //
                 this.iAplicacion!.Borrar(this.entidad!);
                 //Sera que lo saco afuera?
+                i = i + 1;
             }
-            
-            for (int i = 0; i < 6; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
+            i = 0;
+            while (ListaNucleo.Lista_Ordenes.Count > i) // Por falta de tiempo, me toco colocarlo asi mientras :/
             {
                 entidad3 = ListaNucleo.Lista_Ordenes[i]; //
                 this.iAplicacion!.Borrar(entidad3!);
                 //Sera que lo saco afuera?
+                i = i + 1;
             }
-            
-            for (int i = 0; i < 6; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
+            i = 0;
+            while (ListaNucleo.Lista_Productos.Count > i) // Por falta de tiempo, me toco colocarlo asi mientras :/
             {
                 entidad5 = ListaNucleo.Lista_Productos[i]; //
                 this.iAplicacion!.Borrar(entidad5!);
                 //Sera que lo saco afuera?
+                i = i + 1;
             }
-            for (int i = 0; i < 3; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
+            i = 0;
+            while (ListaNucleo.Lista_TiposDeAranceles.Count > i) // Por falta de tiempo, me toco colocarlo asi mientras :/
             {
                 entidad6 = ListaNucleo.Lista_TiposDeAranceles[i]; //
                 this.iAplicacion!.Borrar(entidad6!);
                 //Sera que lo saco afuera?
+                i = i + 1;
             }
-            for (int i = 0; i < 3; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
+            i = 0;
+            while (ListaNucleo.Lista_TiposDeProductos.Count > i) // Por falta de tiempo, me toco colocarlo asi mientras :/
             {
                 entidad7 = ListaNucleo.Lista_TiposDeProductos[i]; //
                 this.iAplicacion!.Borrar(entidad7!);
                 //Sera que lo saco afuera?
+                i = i + 1;
             }
-            for (int i = 0; i < 6; i++) //
+            i = 0;
+            while (ListaNucleo.Lista_Empresas.Count > i) //
             {
                 this.entidad1 = ListaNucleo.Lista_Empresas[i]; //
                 this.iAplicacion!.Borrar(entidad1!);
                 //Sera que lo saco afuera?
+                i = i + 1;
             }
-            for (int i = 0; i < 4; i++) // Por falta de tiempo, me toco colocarlo asi mientras :/
+            i = 0;
+            while (ListaNucleo.Lista_Paises.Count > i) // Por falta de tiempo, me toco colocarlo asi mientras :/
             {
                 entidad4 = ListaNucleo.Lista_Paises[i]; //
                 this.iAplicacion!.Borrar(entidad4!);
                 //Sera que lo saco afuera?
+                i = i + 1;
             }
             return true;
         }

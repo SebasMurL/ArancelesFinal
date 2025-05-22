@@ -15,18 +15,17 @@ using ut_presentaciones.Nucleo;
 namespace ut_presentaciones.Aplicaciones
 {
     [TestClass]
-    public class EmpresasPrueba
+    public class PaisesPrueba
     {
-        private readonly IEmpresasAplicacion? iAplicacion;
+        private readonly IPaisesAplicacion? iAplicacion;
         private readonly IConexion? iConexion;
-        private List<Empresas>? lista;
-        private Empresas? entidad;
-        private Paises? entidad4;
-        public EmpresasPrueba()
+        private List<Paises>? lista;
+        private Paises? entidad;
+        public PaisesPrueba()
         {
             iConexion = new Conexion();
             iConexion.StringConexion = Configuracion.ObtenerValor("StringConexion");
-            iAplicacion = new EmpresasAplicacion(iConexion);
+            iAplicacion = new PaisesAplicacion(iConexion);
         }
         [TestMethod]
         public void Ejecutar()
@@ -53,11 +52,11 @@ namespace ut_presentaciones.Aplicaciones
         public bool Guardar() //Modificada
         {
             int i = 0;
-            while (ListaNucleo.Lista_Empresas.Count>i ) // RECUERDA HACERLO WHILE
+            while (ListaNucleo.Lista_Paises.Count > i) // RECUERDA HACERLO WHILE
             {
-                if (ListaNucleo.Lista_Empresas[i]!=null) 
+                if (ListaNucleo.Lista_Paises[i] != null)
                 {
-                    this.entidad = ListaNucleo.Lista_Empresas[i];
+                    this.entidad = ListaNucleo.Lista_Paises[i];
                     this.iAplicacion!.Guardar(this.entidad); //¿?
                 }
                 i = i + 1;
@@ -67,8 +66,8 @@ namespace ut_presentaciones.Aplicaciones
         }
         public bool Modificar()//Modificado
         {
-            this.entidad = ListaNucleo.Lista_Empresas[0]; //
-            this.entidad!.Nombre= "Modificacion";
+            this.entidad = ListaNucleo.Lista_Paises[0]; //
+            this.entidad!.Nombre = "Prueba";
             this.iAplicacion!.Modificar(this.entidad);
             return true;
         }
@@ -76,23 +75,12 @@ namespace ut_presentaciones.Aplicaciones
         public bool Borrar()
         {
             int i = 0;
-            while (ListaNucleo.Lista_Empresas.Count > i) //
-            {
-                if (ListaNucleo.Lista_Empresas[i] != null)
-                {
-                    this.entidad = ListaNucleo.Lista_Empresas[i];
-                    this.iAplicacion!.Borrar(this.entidad); //¿?
-                }
-                i = i + 1;
-                //Sera que lo saco afuera?
-            }
-            i = 0;
-            while (ListaNucleo.Lista_Paises.Count > i)
+            while (ListaNucleo.Lista_Paises.Count > i) //
             {
                 if (ListaNucleo.Lista_Paises[i] != null)
                 {
-                    this.entidad4 = ListaNucleo.Lista_Paises[i];
-                    this.iAplicacion!.Borrar(this.entidad4); //¿?
+                    this.entidad = ListaNucleo.Lista_Paises[i];
+                    this.iAplicacion!.Borrar(this.entidad); //¿?
                 }
                 i = i + 1;
                 //Sera que lo saco afuera?
