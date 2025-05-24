@@ -1,17 +1,11 @@
+using asp_Servicios;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
+var startup = new Startup(builder.Configuration);
+startup.ConfigureServices(builder, builder.Services); //Aqui sale un error asociado al controller
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
+startup.Configure(app, app.Environment);
+app.MapGet("/", () => "asp_servicios"); //Agregado, necesario para que encuentre la "KEY" o algo asi
 app.Run();

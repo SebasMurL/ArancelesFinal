@@ -7,8 +7,8 @@ namespace lib_dominio.Nucleo
     {
         public static Dictionary<string, object> ConvertirAObjeto(string data)
         {
-            var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(data);
-            var values2 = new Dictionary<string, object>();
+            var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(data); //Aqui se almacena lo guardado
+            var values2 = new Dictionary<string, object>(); //Aqui es el nuevo diccionario
             foreach (KeyValuePair<string, object> item in values!)
             {
                 if (item.Value is JObject)
@@ -16,7 +16,7 @@ namespace lib_dominio.Nucleo
                 else
                     values2.Add(item.Key, item.Value);
             }
-            return values2;
+            return values2; //Y si devolvemos el mismo?
         }
 
         public static string ConvertirAString(object data, bool ignore = false)

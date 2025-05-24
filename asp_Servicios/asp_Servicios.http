@@ -1,6 +1,6 @@
 @asp_Servicios_HostAddress = http://localhost:5007
 
-GET {{asp_Servicios_HostAddress}}//
+GET {{asp_Servicios_HostAddress}}//  //Aqui va algo
 Accept: application/json
 
 ###
