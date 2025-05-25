@@ -31,13 +31,13 @@ namespace asp_Servicios.Controllers
             try
             {
                 var datos = ObtenerDatos();
-                /*  ...Para probar, ptm... lo bueno es que se que funciona
-                if (!tokenController!.Validate(datos))
+                /*  ...Para probar, ptm... lo bueno es que se que funciona*/
+                /*if (!tokenController!.Validate(datos))
                 {
                     respuesta["Error"] = "Falla la autentificacion";
                     return JsonConversor.ConvertirAString(respuesta);
-                }
-                */
+                }*/
+                
                 this.iAplicacion!.Configurar(Configuracion.ObtenerValor("StringConexion"));
                 respuesta["Entidades"] = this.iAplicacion!.Listar();
                 respuesta["Respuesta"] = "OK";

@@ -1,5 +1,5 @@
-@asp_Servicios_HostAddress = http://localhost:5007
-
+@asp_Servicios_HostAddress = http://localhost:5007 
+// de 5007  a 7287
 GET {{asp_Servicios_HostAddress}}//  //Aqui va algo
 Accept: application/json
 

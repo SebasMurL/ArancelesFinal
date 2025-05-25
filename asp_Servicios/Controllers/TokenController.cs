@@ -7,6 +7,7 @@ using System.Text;
 using lib_dominio.Nucleo;
 namespace asp_Servicios.Controllers
 {
+
     public class TokenController : ControllerBase
     {
         private Dictionary<string, object> ObtenerDatos()
@@ -14,12 +15,10 @@ namespace asp_Servicios.Controllers
             var respuesta = new Dictionary<string, object>();
             try
             {
-                var datos = new StreamReader(Request.Body).ReadToEnd().ToString(); // Original : new StreamReader(Request.Body).ReadToEnd().ToString()
-
+                var datos = new StreamReader(Request.Body).ReadToEnd().ToString();
                 if (string.IsNullOrEmpty(datos))
-                    datos = "{}";  //Sera cambiarlo aqui? Original {}
-
-                return JsonConversor.ConvertirAObjeto(datos); //Aqui el json convierte mi AB en otra monda, necesito cambiarlo mas adelante
+                    datos = "{}";
+                return JsonConversor.ConvertirAObjeto(datos);
             }
             catch (Exception ex)
             {
@@ -28,64 +27,47 @@ namespace asp_Servicios.Controllers
             }
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //[Route("Token/Fecha")]
-        //public string Fecha()
-        //{
-        // var respuesta = new Dictionary<string, object>();
-        // try
-        // {
-        // respuesta["Token"] = DateTime.Now;
-        // return JsonConversor.ConvertirAString(respuesta);
-        // }
-        // catch (Exception ex)
-        // {
-        // respuesta["Error"] = ex.ToString();
-        // return JsonConversor.ConvertirAString(respuesta);
-        // }
-        //}
-
         [HttpPost]
         [AllowAnonymous]
         [Route("Token/Autenticar")]
-        public string Autenticar()   //Aqui esta un problema, (Original String a void)// como opcion
+        public string Autenticar()
         {
             var respuesta = new Dictionary<string, object>();
             try
             {
                 var datos = ObtenerDatos();
                 
-                if (!datos.ContainsKey("Usuario") || datos["Usuario"].ToString()! != DatosGenerales.usuario_datos)
+                if (!datos.ContainsKey("Usuario") ||
+                    datos["Usuario"].ToString()! != DatosGenerales.usuario_datos)
                 {
                     respuesta["Error"] = "lbNoAutenticacion";
                     return JsonConversor.ConvertirAString(respuesta);
                 }
                 
+
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[] {
                     new Claim(ClaimTypes.Name, datos["Usuario"].ToString()!)
-                    }),
+                }),
                     Expires = DateTime.UtcNow.AddHours(1),
                     SigningCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(DatosGenerales.clave)),
-                SecurityAlgorithms.HmacSha256Signature)
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(DatosGenerales.clave)),
+                        SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
+
                 respuesta["Token"] = tokenHandler.WriteToken(token);
                 return JsonConversor.ConvertirAString(respuesta);
-                
             }
             catch (Exception ex)
             {
                 respuesta["Error"] = ex.ToString();
                 return JsonConversor.ConvertirAString(respuesta);
             }
-
-                
         }
+
         public bool Validate(Dictionary<string, object> data)
         {
             try
